@@ -10,6 +10,7 @@
     <RelativePanel>
         <Canvas Name="theCanvas" HorizontalAlignment="Left" VerticalAlignment="Top" Width="450" Height="450" Margin="25,25,0,0" Background="White"/>
         <Button Click="btnNewGame" Content="New Game" VerticalAlignment="Bottom" RelativePanel.Below="theCanvas" RelativePanel.AlignLeftWith="theCanvas" RelativePanel.AlignRightWith="" Margin="25,25,0,0" HorizontalAlignment="Left"/>
-        <Button Click="btnAbout" Content="About" RelativePanel.Below="theCanvas" RelativePanel.AlignRightWith="theCanvas" HorizontalAlignment="Right" Margin="0,25,0,0"/>
+        <Button x:Name="btnAbout" Click="btnAbout" Content="About" RelativePanel.Below="theCanvas" RelativePanel.AlignRightWith="theCanvas" HorizontalAlignment="Right" Margin="0,25,0,0"/>
+        <Button Content="Settings" RelativePanel.LeftOf="btnAbout" RelativePanel.Below="theCanvas" HorizontalAlignment="Center" Margin="0,25,25,0"/>
     </RelativePanel>
 </Page>
