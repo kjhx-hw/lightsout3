@@ -116,7 +116,7 @@ namespace LightsOutUWP
             DrawGrid();
         }
 
-        private void btnAbout(object sender, RoutedEventArgs e) {
+        private void btnAboutClick(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(BlankPage1));
         }
     }
