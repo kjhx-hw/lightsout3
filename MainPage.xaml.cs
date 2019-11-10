@@ -119,5 +119,9 @@ namespace LightsOutUWP
         private void btnAboutClick(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(BlankPage1));
         }
+
+        private void btnSettingsClick(object sender, RoutedEventArgs e) {
+            this.Frame.Navigate(typeof(SettingsPage));
+        }
     }
 }
