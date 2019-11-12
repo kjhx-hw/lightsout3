@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -95,6 +96,16 @@ namespace LightsOutUWP
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+
+            // Restore GRID SIZE and STATE from storage.
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("gridsize")) {
+                string savedGridSizeSTR = ApplicationData.Current.LocalSettings.Values["gridsize"] as string;
+            }
+
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("state")) {
+                string savedGameState = ApplicationData.Current.LocalSettings.Values["state"] as string;
+            }
+
         }
 
         /// <summary>
@@ -118,6 +129,8 @@ namespace LightsOutUWP
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
+            // Save GRID SIZE, TILE STATES
+            
             deferral.Complete();
         }
     }

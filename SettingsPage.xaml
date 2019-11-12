@@ -9,5 +9,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="500" Height="600">
 
     <RelativePanel Width="500" Height="600">
+        <ComboBox Width="120" SelectedIndex="0" RelativePanel.RightOf="txtGridsize" Margin="25,20,0,0">
+            <ComboBoxItem Content="3x3"/>
+        </ComboBox>
+        <TextBlock x:Name="txtGridsize" Text="Grid Size" TextWrapping="Wrap" Margin="25,25,0,0"/>
     </RelativePanel>
 </Page>
