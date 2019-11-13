@@ -73,9 +73,10 @@ namespace LightsOutUWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated || e.PreviousExecutionState == ApplicationExecutionState.ClosedByUser)
                 {
                     //TODO: Load state from previously suspended application
+                    // rootFrame.SetNavigationState((string)ApplicationData.Current.LocalSettings.Values["NavigationState"]);
                 }
 
                 // Place the frame in the current Window
@@ -95,15 +96,6 @@ namespace LightsOutUWP
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
-            }
-
-            // Restore GRID SIZE and STATE from storage.
-            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("gridsize")) {
-                string savedGridSizeSTR = ApplicationData.Current.LocalSettings.Values["gridsize"] as string;
-            }
-
-            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("state")) {
-                string savedGameState = ApplicationData.Current.LocalSettings.Values["state"] as string;
             }
 
         }
@@ -129,8 +121,10 @@ namespace LightsOutUWP
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
-            // Save GRID SIZE, TILE STATES
-            
+
+            Frame frame = Window.Current.Content as Frame;
+            ApplicationData.Current.LocalSettings.Values["NavigationState"] = frame.GetNavigationState();
+
             deferral.Complete();
         }
     }

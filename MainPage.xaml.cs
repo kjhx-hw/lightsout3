@@ -19,6 +19,8 @@ using Rectangle = Windows.UI.Xaml.Shapes.Rectangle;
 using Point = System.Drawing.Point;
 using Size = Windows.Foundation.Size;
 using Windows.UI.Popups;
+using Newtonsoft.Json;
+using Windows.Storage;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -39,8 +41,24 @@ namespace LightsOutUWP
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             model = new LightsOutModel.LightsOutGame();
+
             CreateGrid();
             DrawGrid();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            // Restore GRID STATE and SIZE
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("json")) {
+                string json = ApplicationData.Current.LocalSettings.Values["json"] as string;
+                model = JsonConvert.DeserializeObject<LightsOutModel.LightsOutGame>(json);
+            }
+
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e) {
+            // Save GRID STATE and SIZE
+            string json = JsonConvert.SerializeObject(model);
+            ApplicationData.Current.LocalSettings.Values["json"] = json;
         }
 
         private void CreateGrid() {
